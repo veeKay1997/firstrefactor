@@ -15,15 +15,13 @@ public class TennisGame {
     }
 
     public String getScore(int mScore1, int mScore2) {
-        String scoreInWords = "";
         if (mScore1 == mScore2) {
-            scoreInWords = scoreIsEqualString(mScore1);
+           return scoreIsEqualString(mScore1);
         }
         else if (mScore1 >= 4 || mScore2 >= 4) {
-            scoreInWords = playerHasFourPointsOrMoreString(mScore1, mScore2);
+           return playerHasFourPointsOrMoreString(mScore1, mScore2);
         }
-        else return alternativeSituationString(mScore1, mScore2, scoreInWords);
-        return scoreInWords;
+        else return alternativeSituationString(mScore1, mScore2);
     }
 
     //geval gelijke score
@@ -43,18 +41,19 @@ public class TennisGame {
 
     //een andere situatie, deze (vreemde) loop plakt scores van beide spelers aan elkaar
     //maar het ging om het refactoren ;P
-    private String alternativeSituationString(int mScore1, int mScore2, String score) {
+    private String alternativeSituationString(int mScore1, int mScore2) {
+        String scoreInWords = "";
         String addScore = "-";
         int tempScore;
         for (int i = 1; i < 3; i++) {
             if (i == 1) tempScore = mScore1;
             else {
-                score = score.concat(addScore);
+                scoreInWords = scoreInWords.concat(addScore);
                 tempScore = mScore2;
             }
-            score = score.concat(tempScoreConcatString(tempScore));
+            scoreInWords = scoreInWords.concat(tempScoreConcatString(tempScore));
         }
-        return score;
+        return scoreInWords;
     }
 
     //hulpje van bovenstaande methode
